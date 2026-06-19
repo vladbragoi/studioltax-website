@@ -7,5 +7,12 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   site: process.env.SITE_URL || 'https://studioltax.it',
   base: process.env.BASE_PATH || '',
+  i18n: {
+    defaultLocale: 'it',
+    locales: ['it', 'ro'],
+    routing: {
+      prefixDefaultLocale: false
+    }
+  },
   integrations: [react(), mdx()],
 });

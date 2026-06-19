@@ -5,12 +5,19 @@ interface Props {
 	title: string;
 }
 
+import LanguagePicker from '../components/LanguagePicker.astro';
+import { useTranslations } from '../i18n/utils';
+
 const { title } = Astro.props;
+const lang = Astro.currentLocale || 'it';
+const t = useTranslations(lang as any);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const prefix = lang === 'it' ? '' : `/${lang}`;
+const baseUrl = `${base}${prefix}`;
 ---
 
 <!doctype html>
-<html lang="it">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Studio Tributario Doina Bragoi - Consulenza Fiscale, Societaria e del Lavoro. Servizi premium per imprese e professionisti." />
@@ -25,14 +32,20 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 	<body>
 		<header id="main-header">
 			<div class="container header-inner">
-				<a href={base || '/'} class="logo">
+				<a href={baseUrl || '/'} class="logo">
 					<img src={`${base}/header-logo.png`} alt="Studio LTax Logo" class="header-logo" />
 				</a>
-				<nav>
+				<button class="mobile-menu-toggle" aria-label="Menu">
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
+				<nav id="main-nav">
 					<ul>
-						<li><a href={base || '/'}>Home</a></li>
-						<li><a href={`${base}/servizi`}>Servizi</a></li>
-						<li><a href={`${base}/prenota`} class="btn">Prenota Appuntamento</a></li>
+						<li><a href={baseUrl || '/'}>{t('nav.home')}</a></li>
+						<li><a href={`${baseUrl}/servizi`}>{t('nav.servizi')}</a></li>
+						<li><a href={`${baseUrl}/prenota`} class="btn">{t('nav.prenota')}</a></li>
+						<LanguagePicker />
 					</ul>
 				</nav>
 			</div>
@@ -57,10 +70,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 					<p>P.IVA: 05122570236</p>
 				</div>
 				<div class="footer-section reveal delay-2">
-					<h4>Link Utili</h4>
-					<p><a href={`${base}/servizi`}>Tutti i Servizi</a></p>
-					<p><a href={`${base}/prenota`}>Prenota Appuntamento</a></p>
-					<p><a href={`${base}/admin`}>Area Riservata (CMS)</a></p>
+					<h4>{t('footer.links')}</h4>
+					<p><a href={`${baseUrl}/servizi`}>{t('footer.all_services')}</a></p>
+					<p><a href={`${baseUrl}/prenota`}>{t('nav.prenota')}</a></p>
+					<p><a href={`${base}/admin`}>{t('footer.cms')}</a></p>
 				</div>
 			</div>
 			<div class="container">
@@ -71,9 +84,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 		</footer>
 
 		<script>
-			// Sticky Header Logic
-			const header = document.getElementById('main-header');
+			// Sticky Header
 			window.addEventListener('scroll', () => {
+				const header = document.getElementById('main-header');
 				if (window.scrollY > 50) {
 					header?.classList.add('scrolled');
 				} else {
@@ -81,7 +94,16 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 				}
 			});
 
-			// Scroll Reveal Logic
+			// Mobile Menu
+			const toggle = document.querySelector('.mobile-menu-toggle');
+			const nav = document.getElementById('main-nav');
+			
+			toggle?.addEventListener('click', () => {
+				toggle.classList.toggle('open');
+				nav?.classList.toggle('open');
+			});
+
+			// Scroll Reveals
 			function reveal() {
 				const reveals = document.querySelectorAll('.reveal');
 				for (let i = 0; i < reveals.length; i++) {
