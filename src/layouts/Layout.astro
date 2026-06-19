@@ -47,6 +47,10 @@ const baseUrl = `${base}${prefix}`;
 						<li><a href={`${baseUrl}/prenota`} class="btn">{t('nav.prenota')}</a></li>
 						<LanguagePicker />
 					</ul>
+					<div class="mobile-menu-footer">
+						<p><a href="tel:+393298188662">+39 3298188662</a></p>
+						<p><a href="mailto:doinabragoi@gmail.com">doinabragoi@gmail.com</a></p>
+					</div>
 				</nav>
 			</div>
 		</header>
@@ -101,6 +105,7 @@ const baseUrl = `${base}${prefix}`;
 			toggle?.addEventListener('click', () => {
 				toggle.classList.toggle('open');
 				nav?.classList.toggle('open');
+				document.body.classList.toggle('no-scroll');
 			});
 
 			// Scroll Reveals
