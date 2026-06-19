@@ -6,6 +6,7 @@ interface Props {
 }
 
 const { title } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <!doctype html>
@@ -14,7 +15,7 @@ const { title } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="description" content="Studio Tributario Doina Bragoi - Consulenza Fiscale, Societaria e del Lavoro. Servizi premium per imprese e professionisti." />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+		<link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,14 +25,14 @@ const { title } = Astro.props;
 	<body>
 		<header id="main-header">
 			<div class="container header-inner">
-				<a href={import.meta.env.BASE_URL} class="logo">
-					<img src={`${import.meta.env.BASE_URL}header-logo.png`} alt="Studio LTax Logo" class="header-logo" />
+				<a href={base || '/'} class="logo">
+					<img src={`${base}/header-logo.png`} alt="Studio LTax Logo" class="header-logo" />
 				</a>
 				<nav>
 					<ul>
-						<li><a href={import.meta.env.BASE_URL}>Home</a></li>
-						<li><a href={`${import.meta.env.BASE_URL}servizi`}>Servizi</a></li>
-						<li><a href={`${import.meta.env.BASE_URL}prenota`} class="btn">Prenota Appuntamento</a></li>
+						<li><a href={base || '/'}>Home</a></li>
+						<li><a href={`${base}/servizi`}>Servizi</a></li>
+						<li><a href={`${base}/prenota`} class="btn">Prenota Appuntamento</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -57,9 +58,9 @@ const { title } = Astro.props;
 				</div>
 				<div class="footer-section reveal delay-2">
 					<h4>Link Utili</h4>
-					<p><a href={`${import.meta.env.BASE_URL}servizi`}>Tutti i Servizi</a></p>
-					<p><a href={`${import.meta.env.BASE_URL}prenota`}>Prenota Appuntamento</a></p>
-					<p><a href={`${import.meta.env.BASE_URL}admin`}>Area Riservata (CMS)</a></p>
+					<p><a href={`${base}/servizi`}>Tutti i Servizi</a></p>
+					<p><a href={`${base}/prenota`}>Prenota Appuntamento</a></p>
+					<p><a href={`${base}/admin`}>Area Riservata (CMS)</a></p>
 				</div>
 			</div>
 			<div class="container">
