@@ -1,0 +1,19 @@
+backend:
+  name: git-gateway
+  branch: main
+local_backend: true
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "categorie_servizi"
+    label: "Categorie Servizi"
+    folder: "src/content/servizi"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Titolo Categoria", name: "title", widget: "string"}
+      - {label: "Sottotitolo", name: "subtitle", widget: "string"}
+      - {label: "Descrizione", name: "description", widget: "text", required: false}
+      - {label: "Ordine", name: "order", widget: "number"}
+      - {label: "Elenco Servizi", name: "services", widget: "list", field: {label: "Servizio", name: "service", widget: "string"}}

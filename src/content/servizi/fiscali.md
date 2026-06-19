@@ -1,0 +1,26 @@
+---
+title: "Servizi fiscali"
+subtitle: "Assistenza fiscale"
+description: "Lo Studio LTax offre assistenza fiscale alla clientela. Partendo da una corretta pianificazione fiscale annuale, elaboriamo tutti gli adempimenti fiscali previsti dalla normativa per titolari di partita IVA, Società di Persone e Società di Capitali. Manteniamo costante il monitoraggio sulle scadenze seguendo l'evoluzione normativa."
+order: 2
+services:
+  - "Dichiarazione dei Redditi/Irap e ISA - Modello Redditi Persone Fisiche"
+  - "Dichiarazione dei Redditi/Irap e ISA - Modello Redditi Società di Capitali"
+  - "Dichiarazione dei Redditi/Irap e ISA - Modello Redditi Società di Persone"
+  - "Dichiarazione dei Redditi/Irap e ISA - Modello Redditi Enti non Commerciali"
+  - "Dichiarazione IVA"
+  - "Redazione Bilancio e Deposito"
+  - "Redazione Bilancio Ordinario, Abbreviato e per Micro Imprese"
+  - "Comunicazioni periodiche Liquidazioni IVA"
+  - "Modelli Intrastat"
+  - "Lettere di Intento"
+  - "CU Autonomi"
+  - "770 Autonomi"
+  - "Certificazioni Utili"
+  - "Certificazione Redditi"
+  - "Calcolo Imposte"
+  - "Addebito Imposte modello F24 direttamente su conto contribuente"
+  - "Compensazioni Imposte F24 mediante Entratel"
+  - "Rateazioni Imposte e Ravvedimenti Modelli Omessi e Imposte"
+  - "Consulenza Fiscale"
+---

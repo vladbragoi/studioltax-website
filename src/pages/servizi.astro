@@ -1,0 +1,193 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const serviziEntries = await getCollection('servizi');
+// Ordina in base al campo order definito nel frontmatter
+const sortedServizi = serviziEntries.sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout title="I Nostri Servizi">
+	<section class="services-header">
+		<div class="container">
+			<div class="header-content reveal">
+				<h1>I Nostri <span>Servizi</span></h1>
+				<div class="divider"></div>
+				<p>Un approccio su misura per ogni esigenza fiscale, societaria e del lavoro.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="services-list container">
+		<div class="accordion-container">
+			{sortedServizi.map((entry, index) => (
+				<details class={`reveal delay-${(index % 3) + 1}`} name="servizi-accordion">
+					<summary>
+						<div class="summary-content">
+							<h2>{entry.data.title}</h2>
+							<span class="subtitle">{entry.data.subtitle}</span>
+						</div>
+						<div class="icon">+</div>
+					</summary>
+					<div class="details-content">
+						{entry.data.description && <p class="description">{entry.data.description}</p>}
+						<ul>
+							{entry.data.services.map(service => (
+								<li>{service}</li>
+							))}
+						</ul>
+					</div>
+				</details>
+			))}
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.services-header {
+		padding: 12rem 0 6rem;
+		background-color: var(--color-primary-dark);
+		text-align: center;
+	}
+
+	.header-content h1 {
+		font-size: 3.5rem;
+		color: var(--color-white);
+		margin-bottom: 1.5rem;
+	}
+	
+	.header-content h1 span {
+		font-style: italic;
+		color: var(--color-secondary);
+	}
+
+	.divider {
+		width: 60px;
+		height: 3px;
+		background-color: var(--color-secondary);
+		margin: 0 auto 2rem;
+	}
+
+	.header-content p {
+		font-size: 1.2rem;
+		color: rgba(255, 255, 255, 0.8);
+		max-width: 600px;
+		margin: 0 auto;
+	}
+
+	.services-list {
+		padding-top: 6rem;
+		padding-bottom: 8rem;
+		max-width: 900px;
+	}
+
+	.accordion-container {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	details {
+		background: var(--color-white);
+		border-radius: 4px;
+		box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+		overflow: hidden;
+		border: 1px solid rgba(0,0,0,0.05);
+		transition: box-shadow 0.3s ease, transform 0.3s ease;
+	}
+
+	details:hover {
+		box-shadow: 0 15px 40px rgba(105, 24, 38, 0.08);
+		transform: translateY(-2px);
+	}
+
+	summary {
+		padding: 2rem 2.5rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		cursor: pointer;
+		list-style: none;
+		position: relative;
+	}
+
+	summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.summary-content h2 {
+		font-size: 1.5rem;
+		color: var(--color-primary-dark);
+		margin-bottom: 0.3rem;
+		font-family: var(--font-heading);
+	}
+
+	.summary-content .subtitle {
+		font-size: 0.9rem;
+		color: var(--color-text-light);
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+
+	.icon {
+		font-size: 2rem;
+		color: var(--color-secondary);
+		font-weight: 300;
+		transition: transform 0.3s ease;
+	}
+
+	details[open] .icon {
+		transform: rotate(45deg);
+	}
+
+	.details-content {
+		padding: 0 2.5rem 2.5rem;
+		border-top: 1px solid rgba(0,0,0,0.05);
+		margin-top: 1rem;
+		padding-top: 2rem;
+	}
+
+	.description {
+		margin-bottom: 1.5rem;
+		color: var(--color-text);
+		font-size: 1.05rem;
+	}
+
+	ul {
+		list-style: none;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 1rem;
+	}
+
+	li {
+		position: relative;
+		padding-left: 1.5rem;
+		color: var(--color-text-light);
+		line-height: 1.5;
+	}
+
+	li::before {
+		content: "•";
+		color: var(--color-secondary);
+		position: absolute;
+		left: 0;
+		font-size: 1.2rem;
+		line-height: 1.2;
+	}
+
+	@media (max-width: 768px) {
+		summary, .details-content {
+			padding: 1.5rem;
+		}
+		.services-header {
+			padding: 8rem 0 4rem;
+		}
+		.header-content h1 {
+			font-size: 2.5rem;
+		}
+		ul {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

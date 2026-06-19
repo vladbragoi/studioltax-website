@@ -1,0 +1,100 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Studio LTax di Doina - Consulenza fiscale, tributaria e del lavoro" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+		<title>{title} | Studio LTax</title>
+	</head>
+	<body>
+		<header id="main-header">
+			<div class="container header-inner">
+				<a href="/" class="logo">
+					<img src="/header-logo.png" alt="Studio LTax Logo" class="header-logo" />
+				</a>
+				<nav>
+					<ul>
+						<li><a href="/">Home</a></li>
+						<li><a href="/servizi">Servizi</a></li>
+						<li><a href="/prenota" class="btn">Prenota Appuntamento</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		
+		<main>
+			<slot />
+		</main>
+
+		<footer>
+			<div class="container footer-inner">
+				<div class="footer-section reveal">
+					<h4>Studio LTax</h4>
+					<p>BOVOLONE (VR)</p>
+					<p>Tributarista iscritta al n. 3043 dell'INT.</p>
+					<p>Abilitata intermediario fiscale.</p>
+				</div>
+				<div class="footer-section reveal delay-1">
+					<h4>Contatti</h4>
+					<p>Tel: <a href="tel:+393298188662">+39 3298188662</a></p>
+					<p>Email: <a href="mailto:doinabragoi@gmail.com">doinabragoi@gmail.com</a></p>
+					<p>P.IVA: 05122570236</p>
+				</div>
+				<div class="footer-section reveal delay-2">
+					<h4>Link Utili</h4>
+					<p><a href="/servizi">Tutti i Servizi</a></p>
+					<p><a href="/prenota">Prenota Appuntamento</a></p>
+					<p><a href="/admin">Area Riservata (CMS)</a></p>
+				</div>
+			</div>
+			<div class="container">
+				<div class="footer-bottom reveal delay-3">
+					&copy; {new Date().getFullYear()} Studio LTax. Tutti i diritti riservati.
+				</div>
+			</div>
+		</footer>
+
+		<script>
+			// Sticky Header Logic
+			const header = document.getElementById('main-header');
+			window.addEventListener('scroll', () => {
+				if (window.scrollY > 50) {
+					header?.classList.add('scrolled');
+				} else {
+					header?.classList.remove('scrolled');
+				}
+			});
+
+			// Scroll Reveal Logic
+			function reveal() {
+				const reveals = document.querySelectorAll('.reveal');
+				for (let i = 0; i < reveals.length; i++) {
+					const windowHeight = window.innerHeight;
+					const elementTop = reveals[i].getBoundingClientRect().top;
+					const elementVisible = 100;
+					if (elementTop < windowHeight - elementVisible) {
+						reveals[i].classList.add('active');
+					}
+				}
+			}
+			window.addEventListener('scroll', reveal);
+			// Trigger once on load
+			setTimeout(reveal, 100);
+		</script>
+	</body>
+</html>

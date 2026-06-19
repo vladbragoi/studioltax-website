@@ -1,0 +1,153 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Prenota Appuntamento">
+	<div class="header-banner">
+		<div class="container reveal">
+			<h1>Prenota il tuo <span>Appuntamento</span></h1>
+			<div class="divider"></div>
+			<p>Scegli lo slot più comodo per te direttamente dal nostro calendario condiviso.</p>
+		</div>
+	</div>
+
+	<section class="booking-container container fade-in" style="animation-delay: 0.2s;">
+		<div class="booking-grid">
+			<div class="booking-info">
+				<h2>Vieni a trovarci</h2>
+				<p>Il nostro studio riceve su appuntamento per poterti dedicare tutto il tempo necessario, senza attese.</p>
+				
+				<div class="contact-details">
+					<div class="detail-item">
+						<strong>📍 Sede:</strong>
+						<span>BOVOLONE (VR)</span>
+					</div>
+					<div class="detail-item">
+						<strong>📞 Telefono:</strong>
+						<span><a href="tel:+393298188662">+39 3298188662</a></span>
+					</div>
+					<div class="detail-item">
+						<strong>✉️ Email:</strong>
+						<span><a href="mailto:doinabragoi@gmail.com">doinabragoi@gmail.com</a></span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="calendar-embed">
+				<!-- Questo iframe è un placeholder per il vero link di Google Calendar Appointment Scheduling -->
+				<!-- Per farlo funzionare dovrai generare un link dalla tua pagina di Google Calendar -->
+				<iframe 
+					src="https://calendar.google.com/calendar/appointments/schedules/placeholder-link" 
+					style="border: 0" 
+					width="100%" 
+					height="600" 
+					frameborder="0" 
+					scrolling="yes">
+				</iframe>
+				<div class="calendar-fallback">
+					<p><i>Nota: Il calendario sarà attivo non appena configurerai il link di condivisione di Google Calendar.</i></p>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.header-banner {
+		background-color: var(--color-primary-dark);
+		padding: 12rem 0 6rem;
+		text-align: center;
+	}
+
+	.header-banner h1 {
+		color: var(--color-white);
+		font-size: 3.5rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.header-banner h1 span {
+		font-style: italic;
+		color: var(--color-secondary);
+	}
+
+	.divider {
+		width: 60px;
+		height: 3px;
+		background-color: var(--color-secondary);
+		margin: 0 auto 2rem;
+	}
+
+	.header-banner p {
+		font-size: 1.2rem;
+		color: rgba(255, 255, 255, 0.8);
+		max-width: 600px;
+		margin: 0 auto;
+	}
+
+	.booking-container {
+		padding-top: 6rem;
+		padding-bottom: 8rem;
+	}
+
+	.booking-grid {
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		gap: 4rem;
+	}
+
+	.booking-info h2 {
+		font-size: 2rem;
+		margin-bottom: 1rem;
+	}
+
+	.booking-info p {
+		margin-bottom: 2rem;
+		color: #555;
+	}
+
+	.contact-details {
+		background-color: var(--color-bg-light);
+		padding: 2rem;
+		border-radius: 8px;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		border-left: 4px solid var(--color-primary);
+	}
+
+	.detail-item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.2rem;
+	}
+
+	.detail-item strong {
+		color: var(--color-primary);
+	}
+
+	.detail-item a {
+		font-weight: 500;
+	}
+
+	.calendar-embed {
+		background: #fff;
+		border-radius: 8px;
+		box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+		overflow: hidden;
+		border: 1px solid var(--color-accent-light);
+		position: relative;
+	}
+
+	.calendar-fallback {
+		padding: 1rem;
+		text-align: center;
+		background: #f9f9f9;
+		border-top: 1px solid #ddd;
+	}
+
+	@media (max-width: 900px) {
+		.booking-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
